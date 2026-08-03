@@ -8,13 +8,6 @@ A local tool that embeds text using `all-MiniLM-L6-v2` (via Hugging Face's `sent
 
 Built without any cloud APIs — runs fully offline.
 
-## How to run
-
-```bash
-pip install -r requirements.txt
-python embedding.py
-```
-
 ## How it works
 
 ### Embeddings
@@ -32,23 +25,3 @@ K-Means groups similar vectors into `n_clusters` groups by finding cluster cente
 ### Visualization (PCA)
 
 The embeddings are 384-dimensional, far beyond what can be visually plotted. PCA reduces this to the 2 dimensions along which the data varies most, so similar sentences end up positioned near each other on a 2D plot — a lossy but useful approximation for visual inspection.
-
-## Example output
-
-```
-Enter your prompt: Top AI companies
-Top 3 results
-OpneAI, Antropic and Google are in an AI race  ->  0.5138077
-Artificial intelligence models use vector embeddings to understand semantic meaning.  ->  0.32042196
-...
-```
-
-*(No exact word overlap between the query and the top match — confirms this is matching on meaning, not keywords.)*
-
-![Cluster visualization](cluster_plot.png)
-
-## What I'd improve
-
-- Add a similarity threshold so the search reports "no strong match found" instead of always returning a top-3, even when nothing is actually relevant
-- Expand the dataset — 16 sentences is enough to sanity-check the pipeline, but too small for clustering to be meaningful at scale
-- Try a stronger embedding model (e.g. `all-mpnet-base-v2` or a BGE model) and compare results
